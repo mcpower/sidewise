@@ -227,6 +227,7 @@ function onTabUpdated(a, c, b) {
                 title: a,
                 pinned: b.pinned,
                 openerTabId: b.openerTabId,
+                audible: b.audible === true,
             });
             b.url.match(/^chrome-/) && setTimeout(function () {
                 chrome.tabs.get(b.id, function (a) {

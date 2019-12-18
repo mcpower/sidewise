@@ -200,6 +200,9 @@
    "option_pages_showMediaPlayTime_hint": {
       "message": "#When enabled, the current time of playing videos will be shown next to the video page's row title in [m:ss] format. //// Currently, many (but not all) Youtube, Vimeo, Jwplayer, and HTML5 video players are supported."
    },
+   "option_pages_showAudible": {
+      "message": "Show icon on tabs which are playing audio"
+   },
    "option_pages_specialClickAction_close": {
       "message": "close page/window"
    },

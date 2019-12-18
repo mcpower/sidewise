@@ -10,7 +10,7 @@ var PageNode = function (a, b) {
     this.smartFocusParentTabId = null;
     this.restored = this.initialCreation = !1;
     this.incognito = a.incognito || !1;
-    this.mediaTime = this.mediaState = this.sessionGuid = null;
+    this.mediaTime = this.mediaState = this.sessionGuid = this.audible = null;
     this.restorable = this.restored = !1;
     if (a) {
         var c = a.url ? dropUrlHash(a.url) : "";

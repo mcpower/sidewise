@@ -311,6 +311,7 @@ function loadPageTreeFromLocalStorage(storedPageTree) {
             if (node instanceof PageNode) {
                 node.mediaState = null;
                 node.mediaTime = null;
+                node.audible = null;
             }
         }
     });

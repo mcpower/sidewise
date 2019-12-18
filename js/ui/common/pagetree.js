@@ -22,7 +22,8 @@ var PAGETREE_FANCYTREE_UPDATE_DETAILS_MAP = {
     highlighted: 'highlighted',
     mediaState: 'media-state',
     mediaTime: 'media-time',
-    chromeId: 'chromeid'
+    chromeId: 'chromeid',
+    audible: 'audible',
 };
 
 // wait this long before accessing chrome://favicon cache to obtain
@@ -177,12 +178,18 @@ function onPageRowFormatTitle(row, itemTextElem) {
 
     var textAffix = '';
 
+    if (settings.get('pages_showAudible')) {
+        if (row.attr('audible') == 'true') {
+            textAffix = '🔊';
+        }
+    }
+
     if (settings.get('pages_showMediaPlayTime')) {
         var mediaState = row.attr('media-state');
         if (mediaState == 'playing') {
             var mediaTime = parseFloat(row.attr('media-time'));
             if (mediaTime >= 0.1) {
-                textAffix = formatSecondsAsHMS(mediaTime);
+                textAffix += (textAffix == '' ? '' : ' ') + formatSecondsAsHMS(mediaTime);
             }
         }
     }

@@ -198,7 +198,8 @@ PageTree.prototype = {
                 chromeId: null,
                 status: "complete",
                 mediaState: null,
-                mediaTime: null
+                mediaTime: null,
+                audible: null,
             }),
             e = this;
         c ? b() : chrome.tabs.query({
