@@ -1,8 +1,7 @@
 /* Copyright (c) 2012 Joel Thornton <sidewise@joelpt.net> See LICENSE.txt for license details. */
 
 var REFRESH_FAVICON_DELAYED_MS = 3E3,
-    S2_FAVICON_UPDATE_DELAY_MS = 0,
-    CHROME_FAVICON_UPDATE_DELAY_MS = 1E4,
+    CHROME_FAVICON_UPDATE_DELAY_MS = 1E3,
     expectingNavigationTabIdSwap = !1,
     expectingNavigationOldTabId = null,
     expectingNavigationPossibleNewTabIds = [];
@@ -119,22 +118,13 @@ function refreshFaviconTitleLateTimer(a) {
                 title: c
             });
             else {
-                if (b = splitUrl(d)) {
-                    var e = "http://www.google.com/s2/favicons?domain=" + b.domain;
-                    setTimeout(function () {
-                        tree.updatePage(a, {
-                            favicon: e,
-                            title: c
-                        })
-                    }, S2_FAVICON_UPDATE_DELAY_MS)
-                }
                 setTimeout(function () {
                     chrome.tabs.get(a, function (b) {
                         if (b) {
                             var c = tree.getNode(["chromeId",
                                 a
                             ]);
-                            if (c && (!isStaticFavIconUrl(c.favicon) || 0 == c.favicon.indexOf("http://www.google.com/s2/favicons"))) isStaticFavIconUrl(b.favIconUrl) && b.favIconUrl != c.favicon ? tree.updatePage(c, {
+                            if (c && !isStaticFavIconUrl(c.favicon)) isStaticFavIconUrl(b.favIconUrl) && b.favIconUrl != c.favicon ? tree.updatePage(c, {
                                 favicon: b.favIconUrl
                             }) : tree.updatePage(c, {
                                 favicon: getChromeFavIconUrl(c.url)
