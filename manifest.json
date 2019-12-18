@@ -13,7 +13,7 @@
    } ],
    "default_locale": "en",
    "description": "__MSG_extDescription__",
-   "homepage_url": "http://www.sidewise.info",
+   "homepage_url": "https://github.com/mcpower/sidewise",
    "icons": {
       "128": "images/sidewise_icon_128.png",
       "16": "images/sidewise_icon_16.png",
@@ -29,7 +29,6 @@
    },
    "options_page": "options.html",
    "permissions": [ "tabs", "webNavigation", "*://*/*", "chrome://favicon/", "clipboardWrite", "storage", "unlimitedStorage" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "2017.2.12.0",
    "web_accessible_resources": [ "/sidebars/pages.html", "/sidebars/notepad.html", "/sidebars/external-site.html" ]
 }
