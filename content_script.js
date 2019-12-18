@@ -113,7 +113,7 @@ function injectPageScriptSendEventFn() {
             }, "*")
         };
         window.sidewise_sendMediaUpdateEvent = function (a, b) {
-            window.sidewise_sendEvent("updateMediaState", a + "," + b)
+            window.sidewise_sendEvent("sidewiseUpdateMediaState", a + "," + b)
         }
     })
 }
@@ -121,8 +121,11 @@ function injectPageScriptSendEventFn() {
 function receivePageEvent(a) {
     var b = a.name,
         a = a.value;
+    if (b === undefined) {
+        return;
+    }
     switch (b) {
-        case "updateMediaState":
+        case "sidewiseUpdateMediaState":
             b = a.split(",");
             chrome.runtime.sendMessage({
                 op: "updateMediaState",
@@ -131,7 +134,7 @@ function receivePageEvent(a) {
             });
             break;
         default:
-            throw Error("Unrecognized event name: " + b);
+            break;
     }
 }
 
