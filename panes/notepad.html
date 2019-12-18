@@ -1,0 +1,40 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/common/reset.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/common/pane.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/panes/notepad.css"/>
+
+    <script type="text/javascript" src="/js/lib/ga.js"></script>
+
+    <script type="text/javascript" src="/js/jquery/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery-helpers.js"></script>
+
+    <script type="text/javascript" src="/js/util/marked.js"></script>
+    <script type="text/javascript" src="/js/util/i18n.js"></script>
+
+    <script type="text/javascript" src="/js/util/classes/TimeoutManager.js"></script>
+
+    <script type="text/javascript" src="/js/ui/common/pane.js"></script>
+    <script type="text/javascript" src="/js/ui/panes/notepad.js"></script>
+</head>
+<body>
+    <table id="main">
+        <tr>
+            <td id="header">
+                <span id="heading" i18n="notepad_heading"></span>
+                <div class="hint" i18n="notepad_hint"></div>
+            </td>
+        </tr>
+        <tr>
+            <td id="content">
+                <textarea id="notepad"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td id="footer">
+                <span i18n="notepad_lastSavedAt"></span> <span id="lastSavedAt"></span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

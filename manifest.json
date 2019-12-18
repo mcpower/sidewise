@@ -1,0 +1,36 @@
+{
+   "background": {
+      "page": "background.html"
+   },
+   "browser_action": {
+      "default_icon": "images/sidewise_icon_16.png",
+      "default_title": "Open Sidewise"
+   },
+   "content_scripts": [ {
+      "js": [ "content_script.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_start"
+   } ],
+   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://apis.google.com; object-src 'self'",
+   "default_locale": "en",
+   "description": "__MSG_extDescription__",
+   "homepage_url": "http://www.sidewise.info",
+   "icons": {
+      "128": "images/sidewise_icon_128.png",
+      "16": "images/sidewise_icon_16.png",
+      "256": "images/sidewise_icon_256.png",
+      "32": "images/sidewise_icon_32.png",
+      "48": "images/sidewise_icon_48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXsUqqaA3r2DfXliYFPa96kONYNeM5YFuR5w4/4ZaC/WS/fyoGojWz/h2PV+VRrn4hA/5U5hkm+cKJnx/AzyGO6o3fJE1fD1JaPv5q3xVGacb9s1JkQaQD7Jru9Nhd30UbrWVIcM5QECnOjkNXhzaQf3egYz07qa0LJgwogoYNIQIDAQAB",
+   "manifest_version": 2,
+   "name": "__MSG_extName__",
+   "omnibox": {
+      "keyword": "sw"
+   },
+   "options_page": "options.html",
+   "permissions": [ "tabs", "webNavigation", "*://*/*", "chrome://favicon/", "https://ssl.google-analytics.com/ga.js", "clipboardWrite", "storage", "unlimitedStorage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2017.2.12.0",
+   "web_accessible_resources": [ "/sidebars/pages.html", "/sidebars/notepad.html", "/sidebars/external-site.html" ]
+}

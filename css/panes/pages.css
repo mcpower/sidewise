@@ -1,0 +1,16 @@
+header {
+    height: 30px;
+}
+
+footer.debugEnabled {
+    height: 20px;
+}
+
+section#main {
+    top: 30px;
+    bottom: 0px;
+}
+
+section#main.debugEnabled {
+    bottom: 20px;
+}

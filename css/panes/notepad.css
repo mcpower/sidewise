@@ -1,0 +1,29 @@
+body {
+    font-family: 'Segoe UI', 'MS Sans Serif', sans-serif;
+    margin: 5px;
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+}
+
+#header, #footer {
+    height: 1px;
+}
+
+#header {
+    padding-bottom: 6px;
+}
+
+#notepad {
+    width: 100%;
+    height: 100%;
+    font-family: 'Consolas', 'Lucida Console', monospace;
+    font-size: 12px;
+}
+
+#footer {
+    font-size: 11px;
+    color: #666;
+}

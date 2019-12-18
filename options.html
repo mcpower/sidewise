@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title i18n="optionsPageTitle"></title>
+
+    <link type="text/css" rel="stylesheet" href="/css/common/reset.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/jqueryui/redmond/jquery-ui-1.8.23.custom.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/common/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/js/jquery/impromptu/themes/clean-blue.css" />
+    <link type="text/css" rel="stylesheet" href="/css/options.css"/>
+
+    <link rel="shortcut icon" href="images/sidewise_icon_16.png" sizes="16x16" />
+
+    <script type="text/javascript" src="/js/lib/ga.js"></script>
+
+    <script type="text/javascript" src="/js/jquery/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery-ui-1.8.23.complete.min.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery.tools.min.js"></script>
+    <script type='text/javascript' src='/js/jquery/jquery.highlight.js'></script>
+
+    <script src="/js/jquery/jqgrid/grid.locale-en.js" type="text/javascript"></script>
+    <script src="/js/jquery/jqgrid/jquery.jqGrid.min.js" type="text/javascript"></script>
+
+    <script src="/js/jquery/impromptu/jquery-impromptu.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="/js/util/marked.js"></script>
+    <script type="text/javascript" src="/js/util/i18n.js"></script>
+    <script type="text/javascript" src="/js/util/logging.js"></script>
+    <script type="text/javascript" src="/js/util/util.js"></script>
+    <script type="text/javascript" src="/js/util/ui-util.js"></script>
+    <script type="text/javascript" src="/js/util/chrome-functions.js"></script>
+
+    <script type="text/javascript" src="/js/ui/options/common.js"></script>
+    <script type="text/javascript" src="/js/ui/options/full.js"></script>
+</head>
+<body>
+<div id="top">
+    <div id="cardHolder">
+        <div class="card" id="optionsCard">
+            <header>
+                <div class="floatright">
+                    <img id="icon" src="images/sidewise_icon_16.png"/>
+                    <span id="version"></span>
+                    <br/>
+                    <div class="tinyLinks" i18n="optionsTinyLinks"></div>
+                    <a href="https://twitter.com/sidewise4chrome"><img class="likeButton" title="Follow Sidewise on Twitter" src="/images/options/twitter.png"></a>
+                    <a href="http://www.facebook.com/sidewiseforchrome"><img class="likeButton" title="Like Sidewise on Facebook" src="/images/options/facebook.png"></a>
+                    <div class="g-plusone" data-size="small" data-href="http://sidewise.info"></div>
+                </div>
+
+                <h1 i18n="optionsPageHeading"></h1>
+            </header>
+
+            <div id="donateLinkDiv"><div id="donateLink" class="slideCard link" to="donateCard">Support Sidewise with a donation!</div></div>
+
+            <div id="statusBar" class="statusOK"><div id="statusMessage" i18n="optionsDefaultStatus"></div></div>
+
+            <div id="optionsContainer">
+
+                <h2 i18n="optionsHeadingSidebar"></h2>
+                <select name="dockState">
+                    <option value="left" i18n="option_dockState_left"/>
+                    <option value="right" i18n="option_dockState_right"/>
+                    <option value="undocked" i18n="option_dockState_undocked"/>
+                </select>
+                <select name="browserActionButtonBehavior">
+                    <option value="show" i18n="option_browserActionButtonBehavior_show"/>
+                    <option value="toggle" i18n="option_browserActionButtonBehavior_toggle"/>
+                </select>
+                <input type="checkbox" name="openSidebarOnStartup"/>
+                <input type="checkbox" name="keepSidebarOnTop"/>
+                <input type="checkbox" name="focusSidebarOnHover"/>
+                <input type="checkbox" name="allowAutoUnmaximize"/>
+
+                <div class="advancedOptions">
+                    <input type="checkbox" name="autoSelectChildrenOnDrag"/>
+                    <input type="checkbox" name="animationEnabled"/>
+                </div>
+
+                <div class="optionsRow">
+                    <div id="panePickerExpander" class="link" i18n="optionsShowPanePicker"></div>
+                </div>
+                <div id="panePickerContainer" class="optionsRow">
+                    <strong><div class="info" i18n="optionsInfoPanePicker"></div></strong>
+                    <table id="panePicker"></table>
+                </div>
+
+                <h2 i18n="optionsHeadingPages"></h2>
+                <select name="pages_doubleClickAction">
+                    <option value="none" i18n="option_pages_specialClickAction_none"/>
+                    <option value="expand" i18n="option_pages_specialClickAction_expand"/>
+                    <option value="close" i18n="option_pages_specialClickAction_close"/>
+                    <option value="hibernate" i18n="option_pages_specialClickAction_hibernate"/>
+                    <option value="setlabel" i18n="option_pages_specialClickAction_setLabel"/>
+                    <option value="highlight" i18n="option_pages_specialClickAction_highlight"/>
+                </select>
+                <select name="pages_middleClickAction">
+                    <option value="none" i18n="option_pages_specialClickAction_none"/>
+                    <option value="expand" i18n="option_pages_specialClickAction_expand"/>
+                    <option value="close" i18n="option_pages_specialClickAction_close"/>
+                    <option value="hibernate" i18n="option_pages_specialClickAction_hibernate"/>
+                    <option value="setlabel" i18n="option_pages_specialClickAction_setLabel"/>
+                    <option value="highlight" i18n="option_pages_specialClickAction_highlight"/>
+                </select>
+                <div class="advancedOptions">
+                    <select name="pages_createNewTabUrl">
+                        <option value="newtab" i18n="option_pages_createNewTabUrl_newtab"/>
+                        <option value="homepage" i18n="option_pages_createNewTabUrl_homepage"/>
+                        <option value="google" i18n="option_pages_createNewTabUrl_google"/>
+                        <option value="blank" i18n="option_pages_createNewTabUrl_blank"/>
+                    </select>
+                    <input type="text" name="multiSelectActionConfirmThreshold" datatype="int"/>
+                    <input type="checkbox" name="pages_clickOnMouseWheel"/>
+                    <input type="checkbox" name="pages_clickOnHoverDelay"/>
+                    <blockquote class="trueExpansionGroup" for="pages_clickOnHoverDelay">
+                        <input type="text" name="pages_clickOnHoverDelayMs" datatype="int"/>
+                    </blockquote>
+                    <input type="checkbox" name="pages_showMediaPlayTime"/>
+                    <input type="checkbox" name="pages_trimPageTitlePrefixes"/>
+                    <input type="checkbox" name="smartFocusOnClose"/>
+                    <blockquote class="trueExpansionGroup" for="smartFocusOnClose">
+                            <input type="checkbox" name="smartFocusPrefersParent"/>
+                            <input type="checkbox" name="smartFocusPrefersCousins"/>
+                    </blockquote>
+                    <input type="text" name="closed_maxPagesRemembered" datatype="int" />
+                </div>
+
+                <h2 i18n="optionsHeadingPageHibernation"></h2>
+                <input type="checkbox" name="rememberOpenPagesBetweenSessions"/>
+                <blockquote class="trueExpansionGroup" for="rememberOpenPagesBetweenSessions">
+                    <input type="checkbox" name="autoCollapseLastSessionWindows"/>
+                </blockquote>
+                <input type="checkbox" name="wakeHibernatedPagesOnClick"/>
+
+                <div class="advancedOptions">
+                    <h2 i18n="optionsHeadingMonitors"></h2>
+                    <div class="optionsRow">
+                        <div class="info" i18n="optionsInfoMonitorDetection"></div>
+                    </div>
+                    <input type="button" id="detectMonitorsButton" name="detectMonitorsButton"/>
+                    <div class="optionsRow">
+                        <span class="info" id="infoMonitorsOnYourSystem"></span>
+                    </div>
+
+                    <h2 i18n="optionsHeadingMisc"></h2>
+                    <input type="checkbox" name="alwaysShowAdvancedOptions"/>
+                    <input type="checkbox" name="useAdvancedTreeFiltering"/>
+                    <input type="text" name="sidebarTargetWidth" datatype="int" />
+                    <input type="checkbox" name="reportUsageStatistics"/>
+                    <input type="checkbox" name="showWhatsNewPane"/>
+                    <input type="checkbox" name="loggingEnabled"/>
+
+                    <div class="optionsRow toolsRow" align="center">
+                        <div class="hint" i18n="optionsToolsHeader"></div>
+                        <input type="button" class="toolButton" id="exportButton" name="exportButton" />
+                        <input type="button" class="toolButton" id="importButton" name="importButton"/>
+                        <input type="button" class="toolButton" id="recoverLastSessionButton" name="recoverLastSessionButton"/>
+                        <input type="button" class="toolButton" id="submitBugReportButton" name="submitBugReportButton"/>
+                    </div>
+
+                </div>
+
+                <div class="optionsRow">
+                    <div id="advancedOptionsExpander" class="link" i18n="optionsShowAdvanced"></div>
+                </div>
+
+                <div id="saveBox" align="right">
+                    <div class="hint" i18n="optionsSaveNotNeeded"></div>
+                    <input type="button" id="resetButton" name="resetButton" />
+                    <input type="button" id="closeButton" name="closeButton"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="card" id="donateCard">
+            <table>
+                <tr>
+                    <td id="donatePageHolder">
+                        <iframe id="donatePage" src=""></iframe>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="1">
+                        <div id="donateCardBackLink" class="link slideCard" to="optionsCard" i18n="donate_back">Back</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="clouds">
+    <div id="clouds_1"></div>
+    <div id="clouds_2"></div>
+    <div id="clouds_3"></div>
+    <div id="clouds_4"></div>
+</div>
+
+</body>
+</html>
