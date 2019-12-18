@@ -17,7 +17,6 @@ function postInit() {
     setSubmitBugReportButtonDisabledState();
     $("#version").text(getMessage("text_Version") + " " + getVersion());
     setMonitorCountInfo(settings.get("monitorMetrics").length, !1);
-    initGooglePlusElement()
 }
 
 function onLoggingEnabledClick() {

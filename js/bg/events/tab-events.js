@@ -137,10 +137,7 @@ function onTabRemoved(a, c, b) {
                 }, 125));
                 return
             } if (b = tree.getNode(["chromeId", a]))
-            if (firstTimeInstallTabId == a) tree.removeNode(b), firstTimeInstallTabId = null, settings.get("firstTimeInstallDonatePageShown") || (settings.set("firstTimeInstallDonatePageShown", !0), chrome.tabs.create({
-                url: "/options_install.html?page=donate",
-                active: !0
-            }));
+            if (firstTimeInstallTabId == a) tree.removeNode(b), firstTimeInstallTabId = null;
             else {
                 if (settings.get("smartFocusOnClose") && sidebarHandler.sidebarExists() &&
                     a == tree.focusedTabId)

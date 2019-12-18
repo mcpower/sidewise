@@ -165,11 +165,6 @@ async function postLoad(focusedWin) {
 
         setTimeout(startAssociationRun, 2000); // wait a couple seconds for content scripts to get going
         populatePages(true);
-
-        if (updatedSidewise) {
-            showWhatsNewPane();
-        }
-        showPromoPageAnnually();
     }
 
     await loadAndPopulateTree(ghostTree, 'ghostTree', config.GHOSTTREE_NODE_TYPES);
@@ -1154,51 +1149,6 @@ function restartSidewise() {
         document.location.reload();
     });
 
-}
-
-// Show What's New pane after Sidewise is updated
-function showWhatsNewPane() {
-    var newsPane = paneCatalog.getPane('whatsnew');
-    if (newsPane && settings.get('showWhatsNewPane') && !newsPane.enabled) {
-        newsPane.enabled = true;
-        paneCatalog.saveState();
-        if (sidebarHandler.sidebarExists()) {
-            var manager = sidebarHandler.sidebarPanes.sidebarHost.manager;
-            manager.enableSidebarPane(pane.id);
-        }
-    }
-}
-
-// Show promo page once a year in late December
-function showPromoPageAnnually() {
-    return;
-    var now = new Date();
-    var nowMonth = now.getMonth();
-    var nowDay = now.getDate();
-    if (nowMonth == 11 && nowDay >= 15) {
-        var promoDateStr = settings.get('lastPromoPageShownDate');
-        var showPromo = false;
-        if (!promoDateStr) {
-            showPromo = true;
-        }
-        else {
-            var promoDate = new Date(promoDateStr);
-            if (daysBetween(promoDate, now) > 60) {
-                showPromo = true;
-            }
-        }
-
-        if (showPromo) {
-            settings.set('lastPromoPageShownDate', now);
-            setTimeout(function() {
-                chrome.tabs.create({ 'url': 'http://www.sidewise.info/pay/?which=365', active: true }, function(tab) {
-                    setTimeout(function() {
-                        tree.updatePage(tab.id, { status: 'loaded' });
-                    }, 500);
-                });
-            }, 5000);
-        }
-    }
 }
 
 

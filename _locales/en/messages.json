@@ -8,15 +8,6 @@
    "closed_pageRowButtonTip_close": {
       "message": "Remove permanently"
    },
-   "donateLink_1": {
-      "message": "Think Sidewise is awesome?"
-   },
-   "donateLink_2": {
-      "message": "Support Sidewise with a donation!"
-   },
-   "donate_back": {
-      "message": "&lt;- Back to options"
-   },
    "extDescription": {
       "message": "A dockable sidebar for Chrome featuring vertical Tree Style Tabs, Tab Hibernation, and much more."
    },
@@ -244,9 +235,6 @@
    },
    "option_resetButton": {
       "message": "Reset to defaults"
-   },
-   "option_showWhatsNewPane": {
-      "message": "Show the What's New sidebar pane whenever Sidewise is updated"
    },
    "option_sidebarTargetWidth": {
       "message": "Sidebar target width"

@@ -31,12 +31,6 @@ config.AVAILABLE_PANES = [{
     url: "panes/external-site.html#http://html5.grooveshark.com/#!/music/stations",
     label: "Grooveshark",
     icon: "images/nav/grooveshark.ico"
-}, {
-    enabled: !1,
-    id: "whatsnew",
-    url: "panes/whatsnew.html",
-    label: "What's New",
-    icon: "/images/nav/whatsnew.gif"
 }];
 config.TREE_ONMODIFIED_DELAY_ON_STARTUP_MS = 2500;
 config.TREE_ONMODIFIED_DELAY_AFTER_STARTUP_MS = 1E3;

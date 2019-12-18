@@ -5,9 +5,10 @@ $(document).ready(function () {
 });
 
 function postInit() {
-    "donate" == getURLParameter("page") ? (settings.set("firstTimeInstallDonatePageShown", !0), showCard("donateCard", "Keep Sidewise Alive!")) : (showCard("optionsCard"), $("#version").text(getMessage("text_Version") + " " + getVersion()), styleOptionsNavButton(), $(document).on("click", "#installDoneButton", function () {
-        settings.set("firstTimeInstallDonatePageShown", !0);
-    }), setTimeout(drawInstallIndicatorArrow, 100))
+    showCard("optionsCard");
+    $("#version").text(getMessage("text_Version") + " " + getVersion());
+    styleOptionsNavButton();
+    setTimeout(drawInstallIndicatorArrow, 100);
 }
 
 function styleOptionsNavButton() {

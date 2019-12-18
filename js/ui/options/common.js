@@ -7,8 +7,6 @@
 ///////////////////////////////////////////////////////////
 
 var CARD_SLIDE_DURATION_MS = 450;
-var DONATION_LINK_VARIETIES = 6;
-var DONATION_PAGE_VARIETIES = 5;
 var BUG_REPORT_MAX_SIZE = 0.74 * 1024 * 1024;
 var OPTIONS_INIT_RETRY_DELAY_MS = 1500;
 
@@ -20,8 +18,6 @@ var OPTIONS_INIT_RETRY_DELAY_MS = 1500;
 var bg;
 var settings;
 var currentCardId;
-var donationLinkNumber;
-var donationPageNumber;
 
 ///////////////////////////////////////////////////////////
 // Initialization
@@ -51,7 +47,6 @@ function initOptionsPage(onComplete) {
 
     setI18NText();
     transformInputElements();
-    initDonateElements();
     loadSettings();
     setCloudPlayState();
     $.fx.off = !settings.get('animationEnabled');
@@ -75,35 +70,6 @@ function retriggerInitOptionsPage(onComplete) {
         $('body').append($('<div id="initDelayed">').text('Just a moment...'));
     }
     setTimeout(function() { initOptionsPage(onComplete); }, OPTIONS_INIT_RETRY_DELAY_MS);
-}
-
-function initDonateElements() {
-    // var whichPage = Math.floor(1 + Math.random() * DONATION_PAGE_VARIETIES);
-    var whichPage = 1;
-    var whichLink;
-
-    if (location.pathname == '/options_install.html') {
-        whichLink = 'install';
-    }
-    else {
-        whichLink = Math.floor(1 + Math.random() * DONATION_LINK_VARIETIES);
-    }
-
-    $('#donateLink').html(getMessage('donateLink_' + whichLink));
-
-    var iframeUrl = 'http://www.sidewise.info/pay/?embed=1&which=' + whichPage + '&whichLink=' + whichLink;
-    $('#donatePage').attr('src', iframeUrl);
-
-    donationLinkNumber = whichLink;
-    donationPageNumber = whichPage;
-}
-
-function initGooglePlusElement() {
-    var po = document.createElement('script');
-    po.type = 'text/javascript';
-    po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 }
 
 function transformInputElements() {
@@ -587,7 +553,7 @@ var BUG_REPORT_SIDEBARHANDLER_PROPS = ['creatingSidebar', 'currentDockWindowMetr
     ];
 
 async function submitBugReport() {
-    var desc = prompt('This sends a log of Sidewise\'s recent activity to the author for diagnostic purposes. It is best used immediately after you experience a problem.\n\nPlease clearly describe the problem below. Include row IDs from the tree when pertinent.\n\nNote that this report includes a list of everything in your sidebar panes/trees.');
+    var desc = prompt('This puts a log of Sidewise\'s recent activity into your clipboard. It is best used immediately after you experience a problem.\n\nPlease clearly describe the problem below. Include row IDs from the tree when pertinent.\n\nNote that this report includes a list of everything in your sidebar panes/trees.');
     if (!desc) {
         alert('Diagnostic report cancelled.');
         return;
@@ -635,14 +601,15 @@ async function submitBugReport() {
     data =
         '<style>* { font-family: Lucida Console; font-size: 12px; } .stack { font-size: 11px; color: #bbb; }</style>'
         + data;
+    
+    const settings = await bg.settings.toJSON();
 
-    $.post('http://www.sidewise.info/submit_error/index.php', { 'desc': desc, 'data': data, 'type': 'log' }, function(data, textStatus, jqXHR) {
-        bg.settings.toJSON().then(function(json) {
-            $.post('http://www.sidewise.info/submit_error/index.php', { 'desc': desc, 'data': json, 'type': 'state' }, function(data, textStatus, jqXHR) {
-                alert('Diagnostic report sent. Thank you for the report.\n\nServer response:\n' + data);
-            });
-        });
-    });
+    copyTextToClipboard(JSON.stringify({
+        'desc': desc,
+        'data': data,
+        'settings': settings,
+    }));
+    alert('Copied bug report to clipboard.');
 }
 
 

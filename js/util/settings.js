@@ -185,8 +185,6 @@ class Settings {
             animationEnabled: true,
             autoSelectChildrenOnDrag: true,
             multiSelectActionConfirmThreshold: 30,
-            showWhatsNewPane: true,
-            lastPromoPageShownDate: null,
             focusSidebarOnHover: false
         };
 
