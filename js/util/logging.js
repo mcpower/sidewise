@@ -84,7 +84,7 @@ function writeDiagnosticLog(a, e) {
                             title: c.title,
                             label: c.label,
                             childrenCount: c.children.length
-                        }) : (d = JSON.stringify(c, StringifyReplacer).substring(0,
+                        }) : (d = c === undefined ? "undefined" : JSON.stringify(c, StringifyReplacer).substring(0,
                             MAX_JSON_ARG_LENGTH), d.length == MAX_JSON_ARG_LENGTH && (d += "...")), f.push(d)
                     } catch (i) {
                         f.push("ERROR CONVERTING TO JSON");
