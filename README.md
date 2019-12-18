@@ -1,9 +1,23 @@
 # Sidewise
 
 This is a fork of the discontinued [Sidewise Chrome extension][orig-extension]
-based on version 2017.2.12.0. This fork's main purpose is to fix major bugs
-and to improve user privacy by minimising the number of requests made to third
-party websites (like Google and sidewise.info).
+based on version 2017.2.12.0.
+
+## Features
+
+- Bugs fixed:
+  - Fixed Chrome 79 tab hibernation issue ([joelpt/sidewise#82])
+  - Fixed data exports being broken ([joelpt/sidewise#83]) - this fork also
+    allows you to import broken data exports made by the original extension
+  - Video "current playback time" was very buggy - removed legacy Vimeo /
+    YouTube / JWPlayer code and fixed a major bug in the HTML5 implementation.
+    This feature should now work for any modern video site.
+- Improved user privacy:
+  - Removed all web requests to Google (for analytics and favicons)
+  - Removed all web requests to sidewise.info (for donation pages and bug
+    reports)
+- Add an audio icon (🔊) to tabs which are playing audio (toggleable in
+  options)
 
 ## License
 
@@ -39,3 +53,5 @@ options page.
 
 [orig-extension]: https://chrome.google.com/webstore/detail/sidewise-tree-style-tabs/biiammgklaefagjclmnlialkmaemifgo
 [zip-download]: https://github.com/mcpower/sidewise/archive/master.zip
+[joelpt/sidewise#82]: https://github.com/joelpt/sidewise/issues/82
+[joelpt/sidewise#83]: https://github.com/joelpt/sidewise/issues/83
