@@ -602,12 +602,12 @@ async function submitBugReport() {
         '<style>* { font-family: Lucida Console; font-size: 12px; } .stack { font-size: 11px; color: #bbb; }</style>'
         + data;
     
-    const settings = await bg.settings.toJSON();
+    const settingsJson = await bg.settings.toJSON();
 
     copyTextToClipboard(JSON.stringify({
         'desc': desc,
         'data': data,
-        'settings': settings,
+        'settings': settingsJson,
     }));
     alert('Copied bug report to clipboard.');
 }
