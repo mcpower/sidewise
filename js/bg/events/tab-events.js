@@ -18,15 +18,8 @@ function registerTabEvents() {
 
 function onTabCreated(a) {
     log(a, a.id);
-    if (a.url === "") {
-        if (a.pendingUrl === undefined) {
-            // Chrome 79 bug where target="_blank" links have no URL
-            // TODO: check for infinite loops here
-            chrome.tabs.get(a.id, onTabCreated);
-            return;
-        } else {
-            a.url = a.pendingUrl;
-        }
+    if (a.url === "" && a.pendingUrl !== undefined) {
+        a.url = a.pendingUrl;
     }
     if (!monitorInfo.isDetecting())
         if (sidebarHandler.creatingSidebar && a.url == sidebarHandler.sidebarUrl) log("ignoring creation of the sidebar");
