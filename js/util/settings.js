@@ -113,11 +113,16 @@ class Settings {
     //
     // @param jsonString A JSON string in the format { "localStorage": { ... }, "chromeStorage": { ... }}
     importFromJSON(jsonString) {
-        let data = JSON.parse(jsonString);
+        // remove all broken functions like
+        // ,"key": function key() { [native code] }
+        // we shouldn't use a regex for this - we should be parsing the regex ourselves
+        // but that's too complicated and this regex method should work almost all the time.
+        const BROKEN_FUNCTION_RE = /,\s*"([^"]*)"\s*:\s*function\s*\1\s*\([^)]*\)\s*\{\s*\[native code\]\s*\}/g;
+        let data = JSON.parse(jsonString.replace(BROKEN_FUNCTION_RE, ''));
 
         const localData = data.localStorage;
         for (var k in localData) {
-            if (k === 'lastInitializedVersion') {
+            if (k === 'lastInitializedVersion' || k === 'length') {
                 continue;
             }
             this.set(k, localData[k]);
