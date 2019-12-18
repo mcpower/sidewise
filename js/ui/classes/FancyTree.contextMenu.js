@@ -10,7 +10,7 @@
 // Event handlers
 ///////////////////////////////////////////////////////////
 
-FancyTree.prototype.onContextMenu = function(evt) {
+FancyTree.prototype.onContextMenu = function (evt) {
     var treeObj = evt.data.treeObj;
 
     if (treeObj.contextMenuShown) {
@@ -37,7 +37,7 @@ FancyTree.prototype.onContextMenu = function(evt) {
     return false;
 };
 
-FancyTree.prototype.onContextMenuItemClick = function(evt) {
+FancyTree.prototype.onContextMenuItemClick = function (evt) {
     var treeObj = evt.data.treeObj;
     var id = this.attributes.contextMenuId.value;
     var contextMenuItem = treeObj.contextMenuItems[id];
@@ -51,10 +51,12 @@ FancyTree.prototype.onContextMenuItemClick = function(evt) {
         treeObj.clearMultiSelection();
     }
 
-    treeObj.resetDragDropState(function() {
+    treeObj.resetDragDropState(function () {
         // Perform context menu after a short delay to allow for sidebar to
         // do its visual updates first
-        setTimeout(function() { callback($rows); }, 50);
+        setTimeout(function () {
+            callback($rows);
+        }, 50);
     });
 
     return false;
@@ -66,65 +68,75 @@ FancyTree.prototype.onContextMenuItemClick = function(evt) {
 ///////////////////////////////////////////////////////////
 
 // show context menu positioned at mouse click
-FancyTree.prototype.enableContextMenu = function(x, y)
-{
-    if (!this.onContextMenuShow) {
-        return;
-    }
-
-    var items = this.onContextMenuShow(this.contextMenuSelectionData);
-
-    if (items.length == 0) {
-        return;
-    }
-
-    var menu = $('<ul/>', { id: 'ftContextMenu', class: 'ftContextMenu' });
-
-    this.contextMenuItems = {};
-    for (var i = 0; i < items.length; i++) {
-        var item = items[i];
-        var elem;
-        if (item.separator) {
-            elem = $('<li/>', { class: 'ftContextMenuSeparator' });
+FancyTree.prototype.enableContextMenu = function (x, y) {
+        if (!this.onContextMenuShow) {
+            return;
         }
-        else {
-            var id = item.id;
-            this.contextMenuItems[id] = item;
-            var elem = $('<li/>', { class: 'ftContextMenuItem', contextMenuId: id })
-                .append($('<img/>', { src: item.icon || '/images/x.gif' }))
-                .append($('<span/>').html(item.label));
+
+        var items = this.onContextMenuShow(this.contextMenuSelectionData);
+
+        if (items.length == 0) {
+            return;
         }
-        menu.append(elem);
-    }
 
-    $(document.body).append(menu);
+        var menu = $('<ul/>', {
+            id: 'ftContextMenu',
+            class: 'ftContextMenu'
+        });
 
-    var width = menu.width();
-    var height = menu.height();
+        this.contextMenuItems = {};
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var elem;
+            if (item.separator) {
+                elem = $('<li/>', {
+                    class: 'ftContextMenuSeparator'
+                });
+            } else {
+                var id = item.id;
+                this.contextMenuItems[id] = item;
+                var elem = $('<li/>', {
+                        class: 'ftContextMenuItem',
+                        contextMenuId: id
+                    })
+                    .append($('<img/>', {
+                        src: item.icon || '/images/x.gif'
+                    }))
+                    .append($('<span/>').html(item.label));
+            }
+            menu.append(elem);
+        }
 
-    var docWidth = $(document).width();
-    var docHeight = $(document).height();
+        $(document.body).append(menu);
 
-    if (x + width > docWidth - 15) {
-       x = docWidth - width - 15;
-    }
+        var width = menu.width();
+        var height = menu.height();
 
-    if (y + height > docHeight - 15) {
-        y = docHeight - height - 15;
-    }
+        var docWidth = $(document).width();
+        var docHeight = $(document).height();
 
-    menu.css({ top: y, left: x });
-    menu.show();
-    this.contextMenuShown = true;
-},
+        if (x + width > docWidth - 15) {
+            x = docWidth - width - 15;
+        }
 
-FancyTree.prototype.disableContextMenu = function() {
-    // hide context menu
-    if (!this.contextMenuShown)
-    {
-      return false;
-    }
+        if (y + height > docHeight - 15) {
+            y = docHeight - height - 15;
+        }
 
-    $('#ftContextMenu').remove();
-    this.contextMenuShown = false;
-};
+        menu.css({
+            top: y,
+            left: x
+        });
+        menu.show();
+        this.contextMenuShown = true;
+    },
+
+    FancyTree.prototype.disableContextMenu = function () {
+        // hide context menu
+        if (!this.contextMenuShown) {
+            return false;
+        }
+
+        $('#ftContextMenu').remove();
+        this.contextMenuShown = false;
+    };

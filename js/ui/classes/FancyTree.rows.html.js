@@ -9,31 +9,31 @@
 // Row HTML element retrieval
 ///////////////////////////////////////////////////////////
 
-FancyTree.prototype.getParentRowNode = function(elem) {
+FancyTree.prototype.getParentRowNode = function (elem) {
     return elem.closest('.ftRowNode');
 };
 
-FancyTree.prototype.getItemRow = function(elem) {
+FancyTree.prototype.getItemRow = function (elem) {
     return elem.children('.ftItemRow');
 };
 
-FancyTree.prototype.getItemRowContent = function(elem) {
+FancyTree.prototype.getItemRowContent = function (elem) {
     return elem.children('.ftItemRow').children('.ftItemRowContent');
 };
 
-FancyTree.prototype.getInnerRow = function(elem) {
+FancyTree.prototype.getInnerRow = function (elem) {
     return this.getItemRowContent(elem).children('.ftInnerRow');
 };
 
-FancyTree.prototype.getButtons = function(elem) {
+FancyTree.prototype.getButtons = function (elem) {
     return this.getItemRowContent(elem).children('.ftButtons').children();
 };
 
-FancyTree.prototype.getChildrenContainer = function(elem) {
+FancyTree.prototype.getChildrenContainer = function (elem) {
     return elem.children('.ftChildren');
 };
 
-FancyTree.prototype.getChildrenCount = function(elem) {
+FancyTree.prototype.getChildrenCount = function (elem) {
     return this.getChildrenContainer(elem).find('.ftRowNode').length;
 };
 
@@ -43,26 +43,55 @@ FancyTree.prototype.getChildrenCount = function(elem) {
 ///////////////////////////////////////////////////////////
 
 // construct an empty HTML element for a given rowType
-FancyTree.prototype.buildRowTypeElem = function(rowType) {
+FancyTree.prototype.buildRowTypeElem = function (rowType) {
     var params = this.rowTypes[rowType];
 
     // create elements
-    var rowContainer = $('<li/>', { rowtype: rowType, class: 'ftRowNode' });
-    var itemRow = $('<div/>', { class: 'ftItemRow' });
-    var expander = $('<img/>', { class: 'ftIconButton ftTreeControl ftNode', src: '/images/x.gif' });
-    var itemRowContent = $('<div/>', { class: 'ftItemRowContent' });
-    var innerRow = $('<div/>', { class: 'ftInnerRow' });
-    var icon = $('<img/>', { class: 'ftIconButton ftRowIcon', src: icon });
-    var itemText = $('<div/>', { class: 'ftItemText' });
-    var itemLabel = $('<span/>', { class: 'ftItemLabel' });
-    var itemTextAffix = $('<div/>', { class: 'ftItemTextAffix' }).hide();
-    var itemInnerTitle = $('<span/>', { class: 'ftItemTitle' });
-    var buttons = $('<div/>', { class: 'ftButtons' });
-    var children = $('<ul/>', { class: 'ftChildren' });
+    var rowContainer = $('<li/>', {
+        rowtype: rowType,
+        class: 'ftRowNode'
+    });
+    var itemRow = $('<div/>', {
+        class: 'ftItemRow'
+    });
+    var expander = $('<img/>', {
+        class: 'ftIconButton ftTreeControl ftNode',
+        src: '/images/x.gif'
+    });
+    var itemRowContent = $('<div/>', {
+        class: 'ftItemRowContent'
+    });
+    var innerRow = $('<div/>', {
+        class: 'ftInnerRow'
+    });
+    var icon = $('<img/>', {
+        class: 'ftIconButton ftRowIcon',
+        src: icon
+    });
+    var itemText = $('<div/>', {
+        class: 'ftItemText'
+    });
+    var itemLabel = $('<span/>', {
+        class: 'ftItemLabel'
+    });
+    var itemTextAffix = $('<div/>', {
+        class: 'ftItemTextAffix'
+    }).hide();
+    var itemInnerTitle = $('<span/>', {
+        class: 'ftItemTitle'
+    });
+    var buttons = $('<div/>', {
+        class: 'ftButtons'
+    });
+    var children = $('<ul/>', {
+        class: 'ftChildren'
+    });
 
     // set iconerror handler
     if (params.onIconError) {
-        icon.error({ treeObj: this }, function(evt) {
+        icon.error({
+            treeObj: this
+        }, function (evt) {
             evt.data.row = evt.data.treeObj.getParentRowNode($(this));
             params.onIconError(evt);
         });
@@ -105,7 +134,7 @@ FancyTree.prototype.buildRowTypeElem = function(rowType) {
 };
 
 // clone a new rowType's baseElement and populate it with the provided arguments
-FancyTree.prototype.getNewRowElem = function(rowType, id, icon, label, text, extraAttributes, collapsed) {
+FancyTree.prototype.getNewRowElem = function (rowType, id, icon, label, text, extraAttributes, collapsed) {
     var rowTypeParams = this.rowTypes[rowType];
     var row = rowTypeParams.baseElement.clone(true, true);
     var innerRow = this.getInnerRow(row);
