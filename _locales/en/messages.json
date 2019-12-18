@@ -242,12 +242,6 @@
    "option_rememberOpenPagesBetweenSessions_hint": {
       "message": "#When enabled, each time you restart Chrome, Sidewise will show any tabs you previously had open under a hibernated 'Last Session' row at the top of the Pages tree. From there you can selectively wake any or all of your previously open tabs. //// Disabling this option will prevent any 'Last Session' rows from showing. You can still access previous session activity via the **Recently closed** sidebar pane. //// **Pro tip:** If you have Chrome's 'Continue where I left off' option set (found in [Chrome's settings](chrome://settings)), Chrome has to reopen all your previously open tabs every time it starts up. By enabling this Sidewise option and switching the aforementioned Chrome option to 'Open the New Tab page' instead, Sidewise will retain your previous browsing session state for you, and Chrome won't have to reopen all your previously open tabs every startup. //// You can click a hibernated 'Last Session' row to automatically wake all previously open tabs in it."
    },
-   "option_reportUsageStatistics": {
-      "message": "Allow reporting to Google Analytics"
-   },
-   "option_reportUsageStatistics_hint": {
-      "message": "#Like many websites and other Chrome extensions, Sidewise uses Google Analytics to track usage levels of different parts of the extension. This tracking is [anonymized](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApi_gat#_gat._anonymizeIp) and no personal information is collected. //// If you'd rather not have Sidewise use Google Analytics tracking you can disable this option. //// To opt-out of all Google Analytics tracking browser-wide, install Google's [opt-out extension](https://chrome.google.com/webstore/detail/fllaojicojecljbmefodhfapmkghcbnh/details)."
-   },
    "option_resetButton": {
       "message": "Reset to defaults"
    },

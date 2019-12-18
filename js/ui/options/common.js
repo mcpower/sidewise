@@ -77,11 +77,6 @@ function retriggerInitOptionsPage(onComplete) {
     setTimeout(function() { initOptionsPage(onComplete); }, OPTIONS_INIT_RETRY_DELAY_MS);
 }
 
-function onDonateLinkClick(evt) {
-    reportEvent('donate', 'donate_link_clicked', 'donate_link_' + donationLinkNumber);
-    reportEvent('donate', 'donate_page_viewed', 'donate_page_' + donationPageNumber);
-}
-
 function initDonateElements() {
     // var whichPage = Math.floor(1 + Math.random() * DONATION_PAGE_VARIETIES);
     var whichPage = 1;
@@ -101,9 +96,6 @@ function initDonateElements() {
 
     donationLinkNumber = whichLink;
     donationPageNumber = whichPage;
-
-    reportEvent('donate', 'donate_link_shown', 'donate_link_' + donationLinkNumber, null, true);
-    reportEvent('donate', 'donate_page_chosen', 'donate_page_' + donationPageNumber, null, true);
 }
 
 function initGooglePlusElement() {
@@ -478,7 +470,6 @@ function saveOneSetting(e) {
     }
 
     settings.set(name, storeValue);
-    reportEvent('set_option', name, storeValue.toString(), undefined, true);
     return true;
 }
 

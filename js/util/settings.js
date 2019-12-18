@@ -184,7 +184,6 @@ class Settings {
             wakeHibernatedPagesOnClick: false,
             animationEnabled: true,
             autoSelectChildrenOnDrag: true,
-            reportUsageStatistics: true,
             multiSelectActionConfirmThreshold: 30,
             showWhatsNewPane: true,
             lastPromoPageShownDate: null,
@@ -202,13 +201,6 @@ class Settings {
             }
         }
 
-        if (lastInitVersion === undefined) {
-            reportEvent('sidewise', 'installed', version);
-            reportPageView('/installed');
-        }
-        else {
-            reportEvent('sidewise', 'updated', version);
-        }
 
         this.set('lastInitializedVersion', version);
         console.log('Initialization of settings done, settings version now at', version);

@@ -29,7 +29,7 @@
       "keyword": "sw"
    },
    "options_page": "options.html",
-   "permissions": [ "tabs", "webNavigation", "*://*/*", "chrome://favicon/", "https://ssl.google-analytics.com/ga.js", "clipboardWrite", "storage", "unlimitedStorage" ],
+   "permissions": [ "tabs", "webNavigation", "*://*/*", "chrome://favicon/", "clipboardWrite", "storage", "unlimitedStorage" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "2017.2.12.0",
    "web_accessible_resources": [ "/sidebars/pages.html", "/sidebars/notepad.html", "/sidebars/external-site.html" ]

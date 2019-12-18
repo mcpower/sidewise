@@ -5,10 +5,8 @@ $(document).ready(function () {
 });
 
 function postInit() {
-    reportEvent("install", "viewed_first_time_install");
     "donate" == getURLParameter("page") ? (settings.set("firstTimeInstallDonatePageShown", !0), showCard("donateCard", "Keep Sidewise Alive!")) : (showCard("optionsCard"), $("#version").text(getMessage("text_Version") + " " + getVersion()), styleOptionsNavButton(), $(document).on("click", "#installDoneButton", function () {
         settings.set("firstTimeInstallDonatePageShown", !0);
-        onDonateLinkClick()
     }), setTimeout(drawInstallIndicatorArrow, 100))
 }
 

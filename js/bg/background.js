@@ -184,8 +184,6 @@ async function postLoad(focusedWin) {
     // save a backup of pageTree periodically
     setInterval(backupPageTree, config.SAVE_TREE_BACKUP_EVERY_MS);
 
-    reportEvent('sidewise', 'loaded');
-
     monitorInfo = new MonitorInfo();
 
     if (monitorInfo.isKnown()) {

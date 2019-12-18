@@ -92,7 +92,7 @@ SidebarNavManager.prototype = {
             d !=
                 e.currentSidebarId && $("#sidebarContainer__" + d).css("visibility", "hidden")
         });
-        d != this.currentSidebarId && (reportEvent("sidebar", "switch_pane", a, void 0, !0), settings.set("lastSidebarPaneId", a))
+        d != this.currentSidebarId && settings.set("lastSidebarPaneId", a)
     },
     scrollToCurrentSidebarPane: function (a, b) {
         this.scrolling = !0;
