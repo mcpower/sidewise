@@ -285,30 +285,40 @@ class Settings {
                 continue;
             }
 
-            try {
-                // TODO improve this; we assume too much wrt what's happening in
-                // the child page with domWindow.ft. To fix, when someone calls
-                // sbh.registerSidebarPane, accept an onSettingsChanged event handler arg
-                // and call it here; SidebarPaneFancyTreeBinder can bind up the onSettingsChanged
-                // event to listen for settings changes and set java.fx appropriately
-                domWindow.ft.useAdvancedFiltering = this.get('useAdvancedTreeFiltering');
-                domWindow.ft.autoSelectChildrenOnDrag = this.get('autoSelectChildrenOnDrag');
-                domWindow.ft.clickOnMouseWheel = this.get('pages_clickOnMouseWheel');
-
-                var clickOnHoverDelayMs;
-                if (this.get('pages_clickOnHoverDelay')) {
-                    clickOnHoverDelayMs = this.get('pages_clickOnHoverDelayMs');
+            for (const iframe of domWindow.document.getElementsByTagName("iframe")) {
+                const iframeWindow = iframe.contentWindow;
+                if (iframeWindow.ft) {
+                    try {
+                        // TODO improve this; we assume too much wrt what's happening in
+                        // the child page with iframeWindow.ft. To fix, when someone calls
+                        // sbh.registerSidebarPane, accept an onSettingsChanged event handler arg
+                        // and call it here; SidebarPaneFancyTreeBinder can bind up the onSettingsChanged
+                        // event to listen for settings changes and set java.fx appropriately
+                        iframeWindow.ft.useAdvancedFiltering = this.get('useAdvancedTreeFiltering');
+                        iframeWindow.ft.autoSelectChildrenOnDrag = this.get('autoSelectChildrenOnDrag');
+                        iframeWindow.ft.clickOnMouseWheel = this.get('pages_clickOnMouseWheel');
+    
+                        var clickOnHoverDelayMs;
+                        if (this.get('pages_clickOnHoverDelay')) {
+                            clickOnHoverDelayMs = this.get('pages_clickOnHoverDelayMs');
+                        }
+    
+                        iframeWindow.ft.clickOnHoverDelayMs = clickOnHoverDelayMs;
+    
+                        if (changedSetting == 'pages_trimPageTitlePrefixes' && k == 'pages') {
+                            iframeWindow.ft.formatAllRowTitles.call(iframeWindow.ft);
+                        }
+                    }
+                    catch(ex) {}
                 }
-
-                domWindow.ft.clickOnHoverDelayMs = clickOnHoverDelayMs;
-
-                if (changedSetting == 'pages_trimPageTitlePrefixes' && k == 'pages') {
-                    domWindow.ft.formatAllRowTitles.call(domWindow.ft);
+                if (iframeWindow.$ && iframeWindow.$.fx) {
+                    iframeWindow.$.fx.off = !this.get('animationEnabled');
                 }
             }
-            catch(ex) {}
-
-            domWindow.$.fx.off = !this.get('animationEnabled');
+            
+            if (domWindow.$ && domWindow.$.fx) {
+                domWindow.$.fx.off = !this.get('animationEnabled');
+            }
 
             if (!loggingChanged) {
                 continue;
