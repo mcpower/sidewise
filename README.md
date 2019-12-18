@@ -1,7 +1,9 @@
 # Sidewise
 
 This is a fork of the discontinued [Sidewise Chrome extension][orig-extension]
-based on version 2017.2.12.0. This fork's main purpose is to fix major bugs.
+based on version 2017.2.12.0. This fork's main purpose is to fix major bugs
+and to improve user privacy by minimising the number of requests made to third
+party websites (like Google and sidewise.info).
 
 ## License
 
