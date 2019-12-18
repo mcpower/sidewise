@@ -164,6 +164,9 @@ function mapObjectProps(a, c) {
     var b = [],
         d;
     for (d in a) {
+        if (!a.hasOwnProperty(d)) {
+            continue;
+        }
         var e = c(d, a[d]);
         void 0 !== e && b.push(e)
     }
