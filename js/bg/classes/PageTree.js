@@ -392,8 +392,23 @@ PageTree.prototype = {
     removeFromTabIndex: function (a) {
         if (a instanceof PageNode) {
             var c = a.windowId;
-            c ? this.tabIndexes[c] ? (a = this.tabIndexes[c].indexOf(a), -1 < a && (this.tabIndexes[c].splice(a, 1), 0 == this.tabIndexes[c].length && delete this.tabIndexes[c])) :
-                a.hibernated || console.warn("No tab index found for windowId " + c, "node", a.id, a, this.tabIndexes) : console.warn("No windowId found on node", a.id, a)
+            if (c) {
+                if (this.tabIndexes[c]) {
+                    a = this.tabIndexes[c].indexOf(a);
+                    if (a > -1) {
+                        this.tabIndexes[c].splice(a, 1);
+                        if (this.tabIndexes[c].length === 0) {
+                            delete this.tabIndexes[c];
+                        }
+                    }
+                } else {
+                    if (!a.hibernated && !a.url.startsWith(`chrome-extension://${chrome.runtime.id}`)) {
+                        console.warn("No tab index found for windowId " + c, "node", a.id, a, this.tabIndexes);
+                    }
+                }
+            } else {
+                console.warn("No windowId found on node", a.id, a);
+            }
         }
     },
     rebuildTreeByTabIndex: function (a) {
