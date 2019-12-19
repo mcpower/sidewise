@@ -25,7 +25,7 @@ function onDOMContentLoaded() {
 
 function setUpMessageListener() {
     window.addEventListener("message", function (a) {
-        a.source == window && receivePageEvent(a.data)
+        a.source == window && typeof a.data === "object" && a.data.name !== undefined && receivePageEvent(a.data)
     })
 }
 
@@ -121,9 +121,6 @@ function injectPageScriptSendEventFn() {
 function receivePageEvent(a) {
     var b = a.name,
         a = a.value;
-    if (b === undefined) {
-        return;
-    }
     switch (b) {
         case "sidewiseUpdateMediaState":
             b = a.split(",");
